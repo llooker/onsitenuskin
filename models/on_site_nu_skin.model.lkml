@@ -19,3 +19,12 @@ explore: three_year_sales {
     sql_on: ${three_year_sales.commission_month} = ${dates.comm_yyyy_mm} ;;
   }
 }
+
+explore: product_report {
+  join: dates {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${product_report.commission_month} = ${dates.comm_yyyy_mm} ;;
+  }
+
+}

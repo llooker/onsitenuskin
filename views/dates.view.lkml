@@ -39,15 +39,7 @@ view: dates {
 
   dimension_group: financial {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [date,month,month_num,month_name,quarter,year]
     sql: CAST(${TABLE}.Date AS TIMESTAMP) ;;
   }
 

@@ -2,11 +2,18 @@ view: product_report {
   sql_table_name: rob.Product_Report ;;
 
   dimension: commission_month {
+    hidden: yes
     type: string
     sql: ${TABLE}.Commission_Month ;;
   }
 
   dimension: geo_dimension {
+    type: string
+    sql: ${TABLE}.Geo_Dimension ;;
+  }
+
+  dimension: map_dimension {
+    map_layer_name: countries
     type: string
     sql: ${TABLE}.Geo_Dimension ;;
   }
@@ -21,23 +28,31 @@ view: product_report {
     sql: ${TABLE}.Item_SKU ;;
   }
 
-  dimension: order_pv {
-    type: number
-    sql: ${TABLE}.Order_PV ;;
-  }
-
-  dimension: order_quantity {
-    type: number
-    sql: ${TABLE}.Order_Quantity ;;
-  }
-
   dimension: product_name {
     type: string
     sql: ${TABLE}.Product_Name ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [product_name]
+  dimension: order_pv {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.Order_PV ;;
   }
+
+  measure: total_order_pv {
+    type: sum
+    sql: ${order_pv} ;;
+  }
+
+  dimension: order_quantity {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.Order_Quantity ;;
+  }
+
+  measure: total_order_quantity {
+    type: sum
+    sql: ${order_quantity} ;;
+  }
+
 }
